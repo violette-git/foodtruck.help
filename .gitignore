@@ -5,3 +5,6 @@ data
 env
 /env
 env/
+migrations
+/migrations
+migrations/
