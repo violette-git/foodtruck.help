@@ -13,7 +13,7 @@ import html
 
 def test(request):
 
-	return render(request, 'foodtruckapp/test.html') 
+	return render(request, 'hubapp/test.html') 
 
 
 def display(request):
@@ -22,7 +22,7 @@ def display(request):
 
 
     }
-    return render(request, 'foodtruckapp/display.html', context)
+    return render(request, 'hubapp/display.html', context)
 
 def controller(request):
 
@@ -30,7 +30,7 @@ def controller(request):
 
     }
 
-    return render(request, 'foodtruckapp/controller.html', context)
+    return render(request, 'hubapp/controller.html', context)
 
 def whereami(request):
 	# if request.method == 'GET':
@@ -56,5 +56,5 @@ def whereami(request):
 		'stuff': new_template
 	}
 	# template.render(context)
-	# return render(request, 'foodtruckapp/whereami.html', context)
+	# return render(request, 'hubapp/whereami.html', context)
 	return HttpResponseRedirect(url)
