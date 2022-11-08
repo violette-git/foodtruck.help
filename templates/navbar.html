@@ -45,10 +45,10 @@
 
                 </li>{% if request.user.is_superuser %}
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="{% url 'foodtruckapp:display' %}">Display</a>
+                    <a class="nav-link text-dark" href="{% url 'hubapp:display' %}">Display</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="{% url 'foodtruckapp:controller' %}">Controller</a>
+                    <a class="nav-link text-dark" href="{% url 'hubapp:controller' %}">Controller</a>
                 </li>{% endif %}
                 <li class="nav-item pr-5">
                     <a class="btn btn-bd-download text-light text-decoration-none"
