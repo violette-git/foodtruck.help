@@ -13,8 +13,15 @@ import os
 import environ
 from pathlib import Path
 from django.conf import settings
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "foodtruckhub.settings")
+import django
+django.setup()
+
+from django.core.management import call_command
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
