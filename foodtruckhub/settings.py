@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
-DEBUG = config('DJANGO-DEBUG', default=True, cast=bool)
+DEBUG = config('DJANGO-DEBUG', default=False, cast=bool)
 
 # DEBUG = os.environ.get('DEBUG')
 if DEBUG:
