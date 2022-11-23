@@ -52,11 +52,11 @@ def register(request):
 
 # --------------------------------------------------------
 
-def login(request):
+def ulogin(request):
 
     if request.method == 'GET':
 
-        return render(request, 'user_app/login.html')
+        return render(request, 'registration/login.html')
 
     elif request.method == 'POST':
 

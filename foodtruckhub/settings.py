@@ -9,8 +9,13 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
+
+# import environ
 import os
-import environ
+from decouple import config
+import django_heroku
+import psycopg2
+import dj_database_url
 from pathlib import Path
 from django.conf import settings
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -18,19 +23,31 @@ from django.conf import settings
 BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
-env = environ.Env()
+
+DEBUG = config('DJANGO-DEBUG', default=True, cast=bool)
+
+# DEBUG = os.environ.get('DEBUG')
+if DEBUG:
+
+    key = 'DJANGO_SECRET_KEY_DEV'
+
+else:
+
+    key = 'DJANGO_SECRET_KEY_PRO'
+# DEBUG = True
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('DJANGO_SECRET_KEY', default='django-insecure-uhai-aws*i=!e6nx1ndl9e(m+sq)82h)9+99$-x3g!^m6rlgh5')
-
+# SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', default='django-insecure-uhai-aws*i=!e6nx1ndl9e(m+sq)82h)9+99$-x3g!^m6rlgh5')
+SECRET_KEY = config(key)
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool("DJANGO_DEBUG", True)
 
 
 
-ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=['*'])
+# ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=['*'])
+ALLOWED_HOSTS = ['*']
 
 
 
@@ -45,9 +62,21 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'user_app',
-    'hubapp'
+    'hubapp',
+    'allauth', 
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.github', 
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.facebook',
+    'allauth.socialaccount.providers.google',
+
+    
+
     
 ]
+
+
 
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',                                     # new
@@ -58,6 +87,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    
 ]
 
 ROOT_URLCONF = 'foodtruckhub.urls'
@@ -73,18 +103,24 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                
             ],
         },
     },
 ]
+
+
+
+
 
 WSGI_APPLICATION = 'foodtruckhub.wsgi.application'
 
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
+if DEBUG:
 
-DATABASES = {
+    DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('POSTGRES_NAME'),
@@ -94,6 +130,16 @@ DATABASES = {
         'PORT': 5432,
     }
 }
+else:
+
+    DATABASE_URL = config('DATABASE_URL')
+
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600, ssl_require=True)
+    }
+
+    conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+    
 
 
 # Password validation
@@ -139,7 +185,28 @@ STATIC_URL = 'static/'
 
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"      # new
 
-# Default primary key field type
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+LOGIN_REDIRECT_URL = 'home'
+
+
+
+SOCIAL_AUTH_JSONFIELD_ENABLED = True
+
+
+# SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get('FB_KEY')  
+# SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get('FB_SECRET') 
+
+AUTHENTICATION_BACKENDS = (
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
+SITE_ID = 1
+ACCOUNT_EMAIL_VERIFICATION = "none"
+ACCOUNT_LOGOUT_ON_GET = True
+
+
+# Default primary key field type.
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

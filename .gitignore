@@ -8,3 +8,12 @@ env/
 migrations
 /migrations
 migrations/
+secret.py
+secrets.py
+/secret
+secret/
+secrets/
+/secrets
+secrets.py
+/secrets.py
+secrets.py/

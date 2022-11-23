@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 <!DOCTYPE html>
 
 <html lang="en">
@@ -20,36 +21,39 @@
   <body id="main-page">
     <section id="hero" class="  container-fluid">
       
+      <a href="" style="text-decoration:none">
         <h1 class=" d-flex justify-content-center align-items-center pt-5 text-light">
           FOODTRUCK 
-          <span class="neonText">
-            .HELP
+            <span class="neonText">
+              .HELP
+  
+            </span>
 
-          </span>
-        </h1>
+          </h1>
+        </a>
         <p class='d-flex justify-content-center align-items-center text-light'>Your favourite trucks all in one place</p>
   
         
         
     </section>
     <img id="main-image" src="/static/images/landing-page-bg.jpg" alt="" srcset="">
-    <a href="" class="" style="text-decoration:none">
+    <a href="{% url 'user_app:register' %}" class="" style="text-decoration:none">
       <div id="get-started" class="button1 shadow-lg">Get Started</div>
     </a>
     <span id="signin1" class="text-light">Sign in with</span>
     <!-- <a id="icons" href="https://www.flaticon.com/free-icons/facebook" title="facebook icons"></a> -->
     
-      <a href="#">
+      <a href="{% provider_login_url 'facebook' %}">
         <img class="" id="icons" src="/static/images/facebook.png" alt="Facebook icons created by Ruslan Babkin - Flaticon" srcset="">
       </a>
       <a href="#">
         <img id="icons" src="/static/images/google.png" alt="Google icons created by Ruslan Babkin - Flaticon" srcset="">
       </a>
-      <a href="#">
+      <a href="{% provider_login_url 'twitter' %}">
         <img id="icons" src="/static/images/twitter.png" alt="Facebook icons created by Ruslan Babkin - Flaticon" srcset="">
       </a>
 
-      <span class="text-muted" id="signup">Don't have an account? <a href=""style="text-decoration:none">Sign Up</a></span>
+      <span class="text-muted" id="signup">Don't have an account? <a href="{% url 'user_app:register' %}"style="text-decoration:none">Sign Up</a></span>
 
     
     

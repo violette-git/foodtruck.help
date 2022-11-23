@@ -34,7 +34,7 @@
                 </li>
                 {% if not request.user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link text-dark" href="{% url 'user_app:login' %}">Login</a>
+                    <a class="nav-link text-dark" href="{% url 'user_app:ulogin' %}">Login</a>
                 </li>{% endif %}
                 {% if request.user.is_authenticated %}
                 <li class="nav-item">

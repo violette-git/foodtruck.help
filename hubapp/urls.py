@@ -1,5 +1,6 @@
 from django.urls import path, include
-from . import views
+from hubapp import views
+
 
 
 app_name = 'hubapp'
@@ -10,5 +11,5 @@ urlpatterns = [
     path('whereami/', views.whereami, name='whereami'),
     path('test/', views.test, name='test'),
 
-
+    
 ] 
