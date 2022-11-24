@@ -51,7 +51,12 @@ def register(request):
         return redirect(reverse('user_app:profile', kwargs={ 'username': user.username}))    
 
 # --------------------------------------------------------
+def delete(request):
 
+    del request.user
+
+    return render(request, 'base.html')
+    
 def ulogin(request):
 
     if request.method == 'GET':
