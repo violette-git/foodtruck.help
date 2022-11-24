@@ -183,7 +183,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = 'static/'
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"      # new
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"      # new
 
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
