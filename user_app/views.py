@@ -56,7 +56,11 @@ def delete(request):
     del request.user
 
     return render(request, 'base.html')
-    
+
+def privacy(request):
+
+    return render(request, 'privacy.html')
+
 def ulogin(request):
 
     if request.method == 'GET':
