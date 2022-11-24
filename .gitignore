@@ -17,3 +17,5 @@ secrets/
 secrets.py
 /secrets.py
 secrets.py/
+foodtruck.help_key 2.txt
+foodtruck.help.crt

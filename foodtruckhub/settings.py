@@ -47,7 +47,7 @@ SECRET_KEY = config(key)
 
 
 # ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS", default=['*'])
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['foodtruck.help', 'https://foodtruck.help', 'http://foodtruck.help']
 
 
 
